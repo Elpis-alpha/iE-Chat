@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    position: relative;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    word-break: break-word;
+  }
+  
+  *[class*="hover:"] {
+    transition: color .4s, background-color .4s, left .4s, opacity .4s, transform .4s;
+  }
+
+  *[class^="left"] {
+    transition: color .2s;
+  }
+
+  *:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  html {
+    background-color: #EFF6FC;
+  }
+
+  body {
+    @apply text-black bg-light-blue text-lg font-normal max-w-[2200px] mx-auto min-h-[100vh] flex flex-col
+  }
+
+  /* Custom Scroll bar */
+  ::-webkit-scrollbar {
+    width: .3rem;
+    height: .3rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #EFF6FC;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #6f00ff74;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6E00FF;
+  }
+
+  /* Custom Scroll bar END */
+
+  input, textarea {
+    outline: 0 none;
+    background: transparent;
+  }
+
+  *::placeholder {
+    opacity: .38;
+    color: #fff;
+  }
+
+  img {
+    object-fit: contain;
+  }
+}
+
+@layer components {
+}
