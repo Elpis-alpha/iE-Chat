@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="flex-1 flex flex-col items-center justify-center gap-5 px-5 py-10">
       <div className="flex flex-col items-center justify-center gap-8 sm:gap-12 text-center">
-        <Link href="/"><Logo className="w-[80%] max-w-[550px] md:w-[550px]" /></Link>
+        <Link href="/" className='block mx-auto'><Logo className="w-[80%] mx-auto max-w-[550px] md:w-[550px]" /></Link>
         <div className="w-full">
           <div className="w-[200px] h-5 bg-yellow-400 mx-auto"></div>
           <div className="flex items-center justify-center gap-2">
