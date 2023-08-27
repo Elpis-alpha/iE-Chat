@@ -55,7 +55,7 @@ export default function Home() {
                   className='px-4 pt-[10px] md:pt-[14px] pb-[12px] md:pb-[16px] bg-blue-50 bg-opacity-90 rounded-2xl border-[#59398226] border shadow-sm shadow-[#5939827e] flex w-full' />
                 {showLoadUsername && <span className="absolute top-0 right-0 bottom-0 flex items-center justify-center px-4"><Oval color='rgb(111, 0, 255)' width={25} secondaryColor='rgba(111, 0, 255, 0.4)' /></span>}
               </div>
-              {usernameText && <small className='absolute top-full left-0 text-[red] text-sm leading-none'>{usernameText}</small>}
+              {usernameText && <small className='absolute top-full left-0 text-[red] text-sm leading-normal'>{usernameText}</small>}
             </div>
             <div className="block pt-8">
               <label htmlFor="password" className='text-black text-xl sm:text-2xl font-medium pb-2 block'>Password</label>
@@ -66,9 +66,9 @@ export default function Home() {
                 {showPassword && <button className="absolute top-0 right-0 bottom-0 flex items-center justify-center px-4" onClick={() => setShowPassword(false)}><FaEyeSlash /></button>}
                 {!showPassword && <button className="absolute top-0 right-0 bottom-0 flex items-center justify-center px-4" onClick={() => setShowPassword(true)}><FaEye /></button>}
               </div>
-              {passwordText && <small className='absolute top-full left-0 text-[red] text-sm leading-none'>{passwordText}</small>}
+              {passwordText && <small className='absolute top-full left-0 text-[red] text-sm leading-normal'>{passwordText}</small>}
             </div>
-            <div className="pt-8">
+            <div className={passwordText ? "pt-10" : "pt-8"}>
               <button className='justify-center items-center gap-4 inline-flex px-9 py-4 bg-main-blue text-white rounded-[21px] '>
                 <span className='text-lg font-semibold tracking-wide'>Submit</span>
                 <PiPaperPlaneRightFill className="w-[25px]" />

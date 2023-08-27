@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#eff6fc"></meta>
+        <meta name="theme-color" content="#b1dbff"></meta>
       </head>
       <body className={`${poppins.variable} font-poppins tracking-wide`}>
         {children}
