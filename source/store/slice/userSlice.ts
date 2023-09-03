@@ -3,11 +3,22 @@ import { createSlice } from '@reduxjs/toolkit'
 interface UserState {
 	available: boolean
 	data?: {
-		_id?: string
-		username?: string
-		displayName?: string
-		bio?: string
-		avatar?: string
+		_id: string
+		name: string
+		username: string
+		biography?: string
+		sendWithEnter: boolean
+		onlineStatus: {
+			isOnline: boolean
+			lastOnline: Date
+		}
+		authType: "password" | "google"
+		google?: {
+			id: String
+			token: String
+			tokenExpiryDate: Date
+		},
+		avatar: string
 	}
 	tested: boolean
 	loading: boolean
@@ -15,7 +26,7 @@ interface UserState {
 
 const initialState: UserState = {
 	available: false,
-	data: {},
+	data: undefined,
 	tested: false,
 	loading: false
 }
@@ -30,20 +41,21 @@ const UserSlice = createSlice({
 			state.available = true
 			state.loading = false
 		},
-		
+
 		setUserTest: (state, { payload }) => {
 			state.tested = payload
 			state.loading = false
 		},
-		
+
 		setUserLoading: (state, { payload }) => {
 			state.loading = payload
 		},
-		
+
 		removeUserData: (state) => {
-			state.data = {}
+			state.data = undefined
 			state.available = false
 			state.loading = false
+			state.tested = true
 		},
 	}
 })

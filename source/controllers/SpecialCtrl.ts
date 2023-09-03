@@ -287,3 +287,11 @@ export const formatWallet = (wallet: string, num = 5) => {
 export const waitFor = async (milliseconds: number) => {
   await new Promise(resolve => setTimeout(() => { resolve(milliseconds) }, milliseconds))
 }
+
+export const validatePassword = (password: string) => {
+  if (password.length < 6) return "Minimum of 6 characters."
+  else if (password.search(/[a-z]/) < 0) return "Minimum of one lowercase letter."
+  else if (password.search(/[A-Z]/) < 0) return "Minimum of one uppercase letter."
+  else if (password.search(/[0-9]/) < 0) return "Minimum of one number."
+  else return ""
+}

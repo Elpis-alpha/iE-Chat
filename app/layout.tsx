@@ -1,6 +1,7 @@
 import './styles/global.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import AppProvider from '@/source/components/general/AppProvider'
 
 const poppins = Poppins({
   weight: ["200", "400"],
@@ -24,7 +25,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#b1dbff"></meta>
       </head>
       <body className={`${poppins.variable} font-poppins tracking-wide`}>
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   )
