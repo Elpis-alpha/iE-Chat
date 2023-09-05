@@ -67,17 +67,20 @@ export default function Home() {
     if (usernameMsg) { toast.dismiss(tt); setSaving(false); return toast.error(usernameMsg) }
 
     const serverData = await postApiJson(createUserURL(), { name, password, username })
-    toast.dismiss(tt)
-    if (!serverData.error) signinUser(serverData)
+    if (!serverData.error) signinUser(serverData, tt)
     else {
-      toast.error("An error occured")
+      toast.error("An error occured", { id: tt })
     }
     setSaving(false)
   }
 
-  const signinUser = useCallback(async (data: any) => {
+  const signinUser = useCallback(async (data: any, id?: string) => {
     if (!data?.token) toast.error("Invalid user")
     setSaving(true)
+
+    if (id) toast.success("Signed in", { id })
+    else toast.success("Signed in")
+
     dispatch(setUserData({ ...data }))
     // dispatch(setRefetchCart(true))
     const cookie = new Cookies()

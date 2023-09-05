@@ -51,6 +51,10 @@ const config: Config = {
       "poppins": ["var(--font-poppins)", "sans-serif"],
     },
     extend: {
+      screens: {
+        'vert': { 'raw': '(orientation: portrait)' },
+        'hori': { 'raw': '(orientation: landscape)' },
+      }
     },
   },
   plugins: [],

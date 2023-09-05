@@ -36,10 +36,9 @@ export default function Home() {
     if (password.length < 1) { toast.dismiss(tt); setSaving(false); return toast.error('Password is too short!') }
 
     const serverData = await postApiJson(loginUserURL(), { password, username })
-    toast.dismiss(tt)
-    if (!serverData.error) loginUser(serverData)
+    if (!serverData.error) loginUser(serverData, tt)
     else {
-      toast.error(serverData.error.endsWith("Unable to login") ? "Invalid credentials" : "An error occured")
+      toast.error(serverData.error.endsWith("Unable to login") ? "Invalid credentials" : "An error occured", { id: tt })
     }
     setSaving(false)
   }
@@ -58,9 +57,13 @@ export default function Home() {
     if (!handle) return toast.error("Please enable browser popup!")
   }
 
-  const loginUser = useCallback(async (data: any) => {
+  const loginUser = useCallback(async (data: any, id?: string) => {
     if (!data?.token) toast.error("Invalid user")
     setSaving(true)
+
+    if (id) toast.success("Logged in", { id })
+    else toast.success("Logged in")
+
     dispatch(setUserData({ ...data }))
     // dispatch(setRefetchCart(true))
     const cookie = new Cookies()

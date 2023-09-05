@@ -47,12 +47,12 @@
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #6f00ff74;
+    background: #000000ac;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #6E00FF;
+    background: #000;
   }
 
   /* Custom Scroll bar END */
@@ -93,5 +93,18 @@
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     perspective: 1000px;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+  
+  .skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
   }
 }
