@@ -5,6 +5,7 @@ import Logo from '@/source/components/Logo'
 import { postApiJson } from '@/source/controllers/APICtrl';
 import { validatePassword, waitFor } from '@/source/controllers/SpecialCtrl';
 import { validateUsername } from '@/source/controllers/helpers';
+import { setRefetchRooms } from '@/source/store/slice/roomsSlice';
 import { setUserData } from '@/source/store/slice/userSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -82,7 +83,7 @@ export default function Home() {
     else toast.success("Signed in")
 
     dispatch(setUserData({ ...data }))
-    // dispatch(setRefetchCart(true))
+    dispatch(setRefetchRooms(true))
     const cookie = new Cookies()
     cookie.set(tokenCookieName, data.token, { path: '/', expires: new Date(90 ** 7) })
     router.push('/me')

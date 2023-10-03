@@ -23,7 +23,7 @@ const Footer = () => {
 	return (
 		<>
 			<div className="w-full h-[74px] hidden vert:flex"></div>
-			<footer className="hidden vert:flex fixed bottom-0 left-0 right-0 bg-light-blue z-30 w-full pt-5 pb-[22px] px-5 items-center justify-between border-t border-black rounded-3xl gap-12">
+			<footer className="hidden vert:flex fixed bottom-0 left-0 right-0 bg-light-blue z-30 w-full pt-5 pb-[22px] px-5 items-center justify-between border-t border-black/20 rounded-t-3xl gap-12">
 				<SideBarIcon href="/me" icon={<SlHome size={28} />} active={path === "/me"} />
 				<SideBarIcon href="/me/chat" icon={<AiOutlineMessage size={29} />} active={path.startsWith("/me/chat")} />
 				<SideBarIcon href="/me/settings" icon={<SlSettings size={28} />} active={path.startsWith("/me/settings")} />

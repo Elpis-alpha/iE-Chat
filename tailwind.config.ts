@@ -54,6 +54,7 @@ const config: Config = {
       screens: {
         'vert': { 'raw': '(orientation: portrait)' },
         'hori': { 'raw': '(orientation: landscape)' },
+        'b-hori': { 'raw': '(max-width: 800px)' },
       }
     },
   },

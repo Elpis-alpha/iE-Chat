@@ -41,7 +41,7 @@ const SideBar = () => {
 
 	if (!tested) {
 		return <>
-			<aside className="hidden hori:flex 1.5xl:w-28 w-20 self-stretch rounded-3xl bg-main-blue flex-col overflow-hidden">
+			<aside className="hidden hori:flex 1.5xl:w-28 w-20 self-stretch rounded-3xl bg-main-blue flex-col overflow-hidden hori:my-[2px]">
 				<div className="1.5xl:w-16 1.5xl:h-16 w-12 h-12 rounded-full mx-auto mt-7 skeleton">
 				</div>
 				<div className="pt-12">
@@ -69,7 +69,7 @@ const SideBar = () => {
 	if (!userData || !available) return <></>
 	return (
 		<>
-			<aside className="hidden hori:flex 1.5xl:w-28 w-20 self-stretch rounded-3xl bg-main-blue flex-col overflow-hidden">
+			<aside className="hidden hori:flex 1.5xl:w-28 w-20 self-stretch rounded-3xl bg-main-blue flex-col overflow-hidden hori:my-[2px]">
 				<div className="1.5xl:w-16 1.5xl:h-16 w-12 h-12 rounded-full mx-auto mt-7 skeleton overflow-hidden">
 					<img src={userData.avatar} alt={userData.name} />
 				</div>

@@ -134,9 +134,10 @@ export default function Home() {
 		const { name, bio, username, sendWithEnter } = signData.current
 
 		const tt = toast.loading("Validating")
-		const usernameMsg = await validateUsername(username)
+		const usernameMsg = (username === userData?.username) ? "" : await validateUsername(username)
 		if (name.trim().length < 1) { toast.dismiss(tt); setSaving(false); return toast.error('Name is too short!') }
 		if (usernameMsg) { toast.dismiss(tt); setSaving(false); return toast.error(usernameMsg) }
+		toast.loading("Saving", { id: tt })
 
 		const serverData = await patchApiJson(editUserURL(), { name, bio, username, sendWithEnter })
 		if (!serverData.error && serverData?.user?.username) {
