@@ -71,8 +71,8 @@ export default function Home() {
     if (!serverData.error) signinUser(serverData, tt)
     else {
       toast.error("An error occured", { id: tt })
+      setSaving(false)
     }
-    setSaving(false)
   }
 
   const signinUser = useCallback(async (data: any, id?: string) => {

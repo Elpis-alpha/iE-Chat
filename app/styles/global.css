@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,6 +29,7 @@
   *:disabled {
     opacity: .5;
     cursor: not-allowed;
+    animation: none !important;
   }
 
   html {
@@ -93,7 +95,7 @@
     }
   }
 
-  .shake-button:hover {
+  .shake-button:hover, .shake:hover {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     perspective: 1000px;

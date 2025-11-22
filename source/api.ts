@@ -20,8 +20,14 @@ export const logoutUserURL = () => `${backendLocation}/api/user/logout`
 
 
 // Room Routes
-export const findOrCreateDialogueURL = () => `${backendLocation}/api/chat/dialogue/find-or-create`
 export const getAllRoomsURL = () => `${backendLocation}/api/chat/room/get-all`
+export const findOrCreateDialogueURL = () => `${backendLocation}/api/chat/dialogue/find-or-create`
+export const getRoomURL = (groupID: string) => `${backendLocation}/api/chat/room/get?groupID=${groupID}`
+export const setBlockRoomsURL = () => `${backendLocation}/api/chat/room/set-block-status`
+export const deleteGroupURL = () => `${backendLocation}/api/chat/room/delete`
+export const addGroupMemberURL = () => `${backendLocation}/api/chat/group/add-member`
+
+export const createGroupURL = () => `${backendLocation}/api/chat/group/create`
 
 
 // Normal Routes

@@ -40,8 +40,8 @@ export default function Home() {
     if (!serverData.error) loginUser(serverData, tt)
     else {
       toast.error(serverData.error.endsWith("Unable to login") ? "Invalid credentials" : "An error occured", { id: tt })
+      setSaving(false)
     }
-    setSaving(false)
   }
 
   const handleGoogle = async () => {

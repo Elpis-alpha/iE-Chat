@@ -13,9 +13,11 @@ import { waitFor } from "@/source/controllers/SpecialCtrl"
 import ChatListItemLoad from "./list/ChatListItemLoad"
 import SearchListItemLoad from "./list/SearchListItemLoad"
 import { FaTimesCircle } from "react-icons/fa"
+import LoadingChatsList from "./LoadingChatsList"
 
 const ChatsList = () => {
 	const { available: roomsAvailable, data: roomsData, loading: roomsLoading, tested } = useAppSelector(store => store.rooms)
+	const { data: userData } = useAppSelector(store => store.user)
 	const trackSearch = useRef("")
 	const [searchText, setSearchText] = useState("")
 	const [search, setSearch] = useState({
@@ -44,7 +46,7 @@ const ChatsList = () => {
 		if (myTrack !== trackSearch.current) return false
 
 		if (searchData.error) setSearch(prev => ({ ...prev, isActive: true, error: true, loading: false }))
-		else setSearch(prev => ({ ...prev, isActive: true, error: false, loading: false, results: searchData.data }))
+		else setSearch(prev => ({ ...prev, isActive: true, error: false, loading: false, results: searchData.data.filter((user: any) => user._id !== userData?._id) }))
 	}
 
 	const deactivateSearch = () => {
@@ -52,7 +54,7 @@ const ChatsList = () => {
 		setSearchText("")
 	}
 
-	if (!roomsAvailable || !roomsData) return <div>Loading</div>
+	if (!roomsAvailable || !roomsData) return <LoadingChatsList />
 	return (
 		<div className="flex flex-col w-full h-full vert:gap-4 hori:gap-[22px]">
 			<div className="w-full">

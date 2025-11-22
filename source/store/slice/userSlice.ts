@@ -28,7 +28,7 @@ const initialState: UserState = {
 	available: false,
 	data: undefined,
 	tested: false,
-	loading: false
+	loading: true
 }
 
 const UserSlice = createSlice({

@@ -48,13 +48,15 @@ const config: Config = {
       '5xl': '1800px',
     },
     fontFamily: {
-      "poppins": ["var(--font-poppins)", "sans-serif"],
+      // "poppins": ["var(--font-poppins)", "sans-serif"],
+      "poppins": ["Poppins", "sans-serif"],
     },
     extend: {
       screens: {
         'vert': { 'raw': '(orientation: portrait)' },
         'hori': { 'raw': '(orientation: landscape)' },
         'b-hori': { 'raw': '(max-width: 800px)' },
+        'b-horiX': { 'raw': '(min-width: 800px)' },
       }
     },
   },

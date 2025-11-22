@@ -12,7 +12,8 @@ import { removeUserData, setUserTest } from "@/source/store/slice/userSlice"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
 import { SlHome, SlSettings } from "react-icons/sl"
-import { AiOutlineMessage } from "react-icons/ai"
+import { AiOutlineMessage, AiOutlinePlusCircle } from "react-icons/ai"
+import { FiPlus } from "react-icons/fi"
 
 const SideBar = () => {
 	const router = useRouter()
@@ -71,10 +72,11 @@ const SideBar = () => {
 		<>
 			<aside className="hidden hori:flex 1.5xl:w-28 w-20 self-stretch rounded-3xl bg-main-blue flex-col overflow-hidden hori:my-[2px]">
 				<div className="1.5xl:w-16 1.5xl:h-16 w-12 h-12 rounded-full mx-auto mt-7 skeleton overflow-hidden">
-					<img src={userData.avatar} alt={userData.name} />
+					<img src={userData.avatar} alt={userData.name} className="object-cover w-full h-full" />
 				</div>
 				<div className="pt-12">
 					<SideBarIcon href="/me" icon={<SlHome className="1.5xl:text-[32px] text-[28px]" />} active={path === "/me"} />
+					<SideBarIcon href="/me/create" icon={<AiOutlinePlusCircle className="1.5xl:text-[32px] text-[28px]" />} active={path.startsWith("/me/create")} />
 					<SideBarIcon href="/me/chat" icon={<AiOutlineMessage className="1.5xl:text-[32px] text-[28px]" />} active={path.startsWith("/me/chat")} />
 					<SideBarIcon href="/me/settings" icon={<SlSettings className="1.5xl:text-[32px] text-[28px]" />} active={path.startsWith("/me/settings")} />
 				</div>
@@ -85,7 +87,7 @@ const SideBar = () => {
 			</aside>
 			<nav className="hidden vert:flex w-full py-3 px-4 items-center">
 				<div className="w-[50px] h-[50px] rounded-full skeleton overflow-hidden shadow-sm shadow-main-blue/20 border border-main-blue/5 ">
-					<img src={userData.avatar} alt={userData.name} />
+					<img src={userData.avatar} alt={userData.name} className="object-cover w-full h-full" />
 				</div>
 				<h1 className="font-semibold text-lg pl-3">
 					{path === "/me" && "Home"}

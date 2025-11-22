@@ -5,58 +5,21 @@ interface ActiveRoomState {
 	loading: boolean
 	error: boolean
 	roomID?: string
-	data?: {
-		type: "group" | "dialogue" | "new-dialogue"
-		room?: {
-			_id: string
-			recent: {
-				message: string
-				date: Date
-			},
-			blocked: {
-				status: boolean
-				by: string
-			},
-			members: {
-				memberID: string
-				isAdmin: boolean
-				joinedOn: string
-				unread: number,
-				muted: boolean,
-				pinned: boolean,
-				_id: string
-			}[]
-			groupType: "dialogue" | "group"
-			createdAt: Date
-			updatedAt: Date
-		}
-		user?: {
-			_id: string
-			name: string
-			username: string
-			avatar: string
-			createdAt: Date
-		}
-		messages?: {
-			data: {
-				_id: string
-				sender?: string
-				reference?: string
-				room: string
-				messageType: "text" | "image"
-				text?: string
-				image?: string
-				adminMessage: boolean
-				seenBy: { id: string }[]
-				deleted: boolean
-				createdAt: Date
-				updatedAt: Date
-			}[]
-			more: boolean
-		}
-	},
+	showMore: boolean
+	data?: activeRoomDataType,
 	dialogueUser?: {
-		isGroup: boolean
+		_id: string
+		name: string
+		username: string
+		avatar: string
+		biography: string
+		onlineStatus: {
+			isOnline: boolean
+			lastOnline: Date
+		}
+		room?: roomType
+		createdAt: Date
+		updatedAt: Date
 	}
 }
 
@@ -67,6 +30,7 @@ const initialState: ActiveRoomState = {
 	data: undefined,
 	dialogueUser: undefined,
 	roomID: undefined,
+	showMore: false,
 }
 
 const ActiveRoomSlice = createSlice({
@@ -79,6 +43,7 @@ const ActiveRoomSlice = createSlice({
 			state.error = false
 			state.available = true
 			state.loading = false
+			state.showMore = false
 		},
 
 		setActiveRoomNewDialogue: (state, { payload }) => {
@@ -87,6 +52,7 @@ const ActiveRoomSlice = createSlice({
 			state.error = false
 			state.available = true
 			state.loading = false
+			state.showMore = false
 		},
 
 		setActiveRoomLoading: (state, { payload }) => {
@@ -96,6 +62,7 @@ const ActiveRoomSlice = createSlice({
 			state.data = undefined
 			state.dialogueUser = undefined
 			state.roomID = payload
+			state.showMore = false
 		},
 
 		setActiveRoomError: (state) => {
@@ -104,6 +71,11 @@ const ActiveRoomSlice = createSlice({
 			state.available = false
 			state.data = undefined
 			state.dialogueUser = undefined
+			state.showMore = false
+		},
+
+		toggleActiveRoomShowMore: (state) => {
+			state.showMore = !state.showMore
 		},
 
 		removeActiveRoomData: (state) => {
@@ -113,8 +85,9 @@ const ActiveRoomSlice = createSlice({
 			state.available = false
 			state.loading = false
 			state.roomID = undefined
+			state.showMore = false
 		},
 	}
 })
 export default ActiveRoomSlice.reducer;
-export const { setActiveRoomData, removeActiveRoomData, setActiveRoomLoading, setActiveRoomError, setActiveRoomNewDialogue } = ActiveRoomSlice.actions
+export const { setActiveRoomData, removeActiveRoomData, setActiveRoomLoading, setActiveRoomError, setActiveRoomNewDialogue, toggleActiveRoomShowMore } = ActiveRoomSlice.actions

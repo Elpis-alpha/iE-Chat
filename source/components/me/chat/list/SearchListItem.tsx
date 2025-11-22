@@ -8,7 +8,7 @@ const SearchListItem = ({ user, lastItem }: Props) => {
 	return (
 		<Link href={`/me/chat?room=${user._id}-new`} className="flex gap-4 items-center pb-3" title={user.biography}>
 			<div className="">
-				<img src={user.avatar} alt={user.username} className="w-12 h-12 rounded-full" />
+				<img src={user.avatar} alt={user.username} className="w-12 h-12 object-cover rounded-full" />
 			</div>
 			<div className="flex-1">
 				<h4 className="text-base font-medium line-clamp-1">{user.name}</h4>

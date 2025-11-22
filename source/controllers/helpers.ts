@@ -1,12 +1,10 @@
-import { format, formatRelative } from "date-fns"
+import { format } from "date-fns"
 import { findUserByUsernameURL } from "../api"
 import { getApiJson } from "./APICtrl"
-import { capitalize } from "./SpecialCtrl"
 
 export const validateUsername = async (username: string) => {
 	try {
 		const userExists = await getApiJson(findUserByUsernameURL(username))
-		console.log(userExists)
 		if (userExists?.error?.endsWith?.('not exist')) return ""
 		else return "Username is taken, choose another"
 	} catch (error) {

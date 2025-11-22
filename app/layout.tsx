@@ -1,13 +1,7 @@
 import './styles/global.css'
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
 import AppProvider from '@/source/components/general/AppProvider'
 
-const poppins = Poppins({
-  weight: ["200", "400"],
-  variable: "--font-poppins",
-  subsets: ["latin"]
-})
 
 export const metadata: Metadata = {
   title: 'iE Chat - A Messaging Platform',
@@ -24,7 +18,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#b1dbff"></meta>
       </head>
-      <body className={`${poppins.variable} font-poppins tracking-wide`}>
+      <body className={` font-poppins tracking-wide`}>
         <AppProvider>
           {children}
         </AppProvider>

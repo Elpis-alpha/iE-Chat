@@ -1,4 +1,5 @@
 import { formatChatsTime, parseAdminMessage } from "@/source/controllers/helpers"
+import { capitalize } from "@/source/controllers/SpecialCtrl"
 import { useAppSelector } from "@/source/store/hooks"
 import Link from "next/link"
 
@@ -8,18 +9,30 @@ type Props = {
 }
 const ChatListItem = ({ room, lastItem }: Props) => {
 	const { data: userData } = useAppSelector(store => store.user)
+	const parseDataMap = () => {
+		const dataMap: { id: string, name: string }[] = []
+
+		if (room.groupType === "dialogue") {
+			dataMap.push({ id: userData?._id ?? "", name: "You" })
+			dataMap.push({ id: room.friend?._id ?? "", name: capitalize(room.friend?.name ?? "") })
+		} else {
+			dataMap.push({ id: userData?._id ?? "", name: "You" })
+			room.friends?.forEach?.(r => {
+				dataMap.push({ id: r._id, name: r.name })
+			})
+		}
+
+		return dataMap
+	}
 
 	return (
 		<Link href={`/me/chat?room=${room.groupID}`} className="flex gap-4 items-center pb-3">
 			<div className="">
-				<img src={room.image} alt={room.name} className="w-12 h-12 rounded-full" />
+				<img src={room.image} alt={room.name} className="w-12 h-12 object-cover rounded-full" />
 			</div>
 			<div className="flex-1">
 				<h4 className="text-base font-medium line-clamp-1">{room.name}</h4>
-				<p className="text-sm font-light line-clamp-1">{room.message.adminMessage ? parseAdminMessage(room.message.text ?? "", [
-					{ id: userData?._id ?? "", name: "You" },
-					{ id: room.friend?._id ?? "", name: room.friend?.username ?? "" },
-				]) : room.message.text}</p>
+				<p className="text-sm font-light line-clamp-1">{room.message.adminMessage ? parseAdminMessage(room.message.text ?? "", parseDataMap()) : room.message.text}</p>
 			</div>
 			<div className="text-xs font-light flex items-end flex-col gap-1">
 				<time className="">{formatChatsTime(room.recent.date)}</time>

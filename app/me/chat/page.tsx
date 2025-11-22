@@ -22,11 +22,11 @@ export default function Home() {
 	const isActive = available || error || loading || roomID
 	return (
 		<>
-			<section className="flex-1 flex justify-center hori:gap-[22px] hori:ml-5 text-sm sm:text-base vert:px-4 vert:pb-[2px] overflow-hidden hori:p-[2px]">
+			<section className="flex-1 flex justify-center gap-[22px] hori:ml-5 text-sm sm:text-base vert:px-4 vert:pb-[2px] overflow-hidden hori:p-[2px]">
 				<div className="flex-[3] flex flex-col items-center justify-center w-full hori:h-full z-10 min-w-[270px] b-hori:min-w-[auto]">
 					<ChatsList />
 				</div>
-				<div className={`flex-[5] flex flex-col items-center justify-center w-full h-full z-20 
+				<div className={`flex-[5] flex flex-col items-center justify-center w-full h-full z-20 b-horiX:vert:h-auto
 				b-hori:absolute b-hori:vert:fixed b-hori:top-0 left-anim `+ (isActive ? "b-hori:left-[0]" : "b-hori:left-[105%]")}>
 					<ActiveRoom />
 				</div>
